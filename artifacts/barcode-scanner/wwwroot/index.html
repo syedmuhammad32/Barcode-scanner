@@ -12,7 +12,7 @@
         <div class="header">
             <div class="header-icon">🧴</div>
             <h1>Shampoo Scanner</h1>
-            <p>Barcode scan karke shampoo ki details dekhen</p>
+            <p>Scan a barcode to look up product details</p>
         </div>
 
         <div class="scanner-section" id="scannerSection">
@@ -25,27 +25,27 @@
 
             <div id="cameraPanel">
                 <button class="btn btn-primary" id="startBtn" onclick="startScanner()">
-                    📷 Camera Se Scan Karen
+                    📷 Scan with Camera
                 </button>
                 <button class="btn btn-danger hidden" id="stopBtn" onclick="stopScanner()">
-                    ⛔ Band Karen
+                    ⛔ Stop Camera
                 </button>
             </div>
 
             <div id="filePanel" class="hidden">
                 <label class="file-upload-label" for="fileInput">
-                    <span>📁 Barcode Image Select Karen</span>
-                    <small>Phone se screenshot ya photo upload karein</small>
+                    <span>📁 Select Barcode Image</span>
+                    <small>Upload a photo or screenshot of the barcode</small>
                 </label>
                 <input type="file" id="fileInput" accept="image/*" onchange="scanFromFile(this)" />
             </div>
         </div>
 
         <div class="manual-section">
-            <p class="or-divider">— ya barcode manually likhein —</p>
+            <p class="or-divider">— or enter barcode manually —</p>
             <div class="input-row">
-                <input type="text" id="manualInput" placeholder="Barcode yahan likhein..." />
-                <button class="btn btn-secondary" onclick="lookupManual()">🔍 Dhundhen</button>
+                <input type="text" id="manualInput" placeholder="Enter barcode here..." />
+                <button class="btn btn-secondary" onclick="lookupManual()">🔍 Search</button>
             </div>
         </div>
 
@@ -57,7 +57,7 @@
                     <span class="value" id="resMaterial">—</span>
                 </div>
                 <div class="result-row">
-                    <span class="label">Naam:</span>
+                    <span class="label">Product Name:</span>
                     <span class="value" id="resName">—</span>
                 </div>
                 <div class="result-row">
@@ -65,7 +65,7 @@
                     <span class="value" id="resCapacity">—</span>
                 </div>
                 <div class="result-row price-row">
-                    <span class="label">Qeemat:</span>
+                    <span class="label">Price:</span>
                     <span class="value price" id="resPrice">—</span>
                 </div>
             </div>
@@ -73,16 +73,16 @@
 
         <div class="error-card hidden" id="errorCard">
             <div class="error-icon">❌</div>
-            <p id="errorMsg">Koi error aayi</p>
+            <p id="errorMsg">An error occurred.</p>
         </div>
 
         <div class="loading hidden" id="loading">
             <div class="spinner"></div>
-            <p>Dhoondh raha hoon...</p>
+            <p>Searching...</p>
         </div>
 
         <div class="samples-section">
-            <h3>Sample Codes (Test ke liye)</h3>
+            <h3>Sample Codes (for testing)</h3>
             <div class="samples-grid">
                 <button class="sample-btn" onclick="testBarcode('65070013')">65070013<br/><small>Lifebuoy Herbal</small></button>
                 <button class="sample-btn" onclick="testBarcode('65235936')">65235936<br/><small>Sunsilk Sunrise</small></button>
@@ -92,6 +92,6 @@
         </div>
     </div>
 
-    <script src="/js/app.js?v=5"></script>
+    <script src="/js/app.js?v=6"></script>
 </body>
 </html>
