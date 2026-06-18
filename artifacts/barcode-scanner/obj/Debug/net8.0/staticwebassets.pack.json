@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/css/style.css",
+      "PackagePath": "staticwebassets/css/style.css"
+    },
+    {
+      "Id": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/js/app.js",
+      "PackagePath": "staticwebassets/js/app.js"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.BarcodeScanner.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.BarcodeScanner.props",
+      "PackagePath": "build\\BarcodeScanner.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.BarcodeScanner.props",
+      "PackagePath": "buildMultiTargeting\\BarcodeScanner.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.BarcodeScanner.props",
+      "PackagePath": "buildTransitive\\BarcodeScanner.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

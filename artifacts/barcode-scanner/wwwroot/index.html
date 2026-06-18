@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shampoo Barcode Scanner</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-icon">🧴</div>
+            <h1>Shampoo Scanner</h1>
+            <p>Barcode scan karke shampoo ki details dekhen</p>
+        </div>
+
+        <div class="scanner-section" id="scannerSection">
+            <div id="reader"></div>
+            <button class="btn btn-primary" id="startBtn" onclick="startScanner()">
+                📷 Camera Se Scan Karen
+            </button>
+            <button class="btn btn-danger hidden" id="stopBtn" onclick="stopScanner()">
+                ⛔ Band Karen
+            </button>
+        </div>
+
+        <div class="manual-section">
+            <p class="or-divider">— ya barcode manually likhein —</p>
+            <div class="input-row">
+                <input type="text" id="manualInput" placeholder="Barcode yahan likhein..." />
+                <button class="btn btn-secondary" onclick="lookupManual()">🔍 Dhundhen</button>
+            </div>
+        </div>
+
+        <div class="result-card hidden" id="resultCard">
+            <div class="result-icon">✅</div>
+            <div class="result-details">
+                <div class="result-row">
+                    <span class="label">Barcode:</span>
+                    <span class="value" id="resBarcode">—</span>
+                </div>
+                <div class="result-row">
+                    <span class="label">Naam:</span>
+                    <span class="value" id="resName">—</span>
+                </div>
+                <div class="result-row price-row">
+                    <span class="label">Qeemat:</span>
+                    <span class="value price" id="resPrice">—</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="error-card hidden" id="errorCard">
+            <div class="error-icon">❌</div>
+            <p id="errorMsg">Koi error aayi</p>
+        </div>
+
+        <div class="loading hidden" id="loading">
+            <div class="spinner"></div>
+            <p>Dhoondh raha hoon...</p>
+        </div>
+
+        <div class="samples-section">
+            <h3>Sample Barcodes (Test ke liye)</h3>
+            <div class="samples-grid">
+                <button class="sample-btn" onclick="testBarcode('8901030860009')">8901030860009<br/><small>Head & Shoulders</small></button>
+                <button class="sample-btn" onclick="testBarcode('8901054520014')">8901054520014<br/><small>Pantene Pro-V</small></button>
+                <button class="sample-btn" onclick="testBarcode('8714100878413')">8714100878413<br/><small>Sunsilk</small></button>
+                <button class="sample-btn" onclick="testBarcode('8999999000028')">8999999000028<br/><small>Dove</small></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

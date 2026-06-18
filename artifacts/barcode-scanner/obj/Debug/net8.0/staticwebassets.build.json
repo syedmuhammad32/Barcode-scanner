@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "9LtWl9Df3AUFvAGzxygqv+bxQYmmZdmTDpvRps9eCoc=",
+  "Source": "BarcodeScanner",
+  "BasePath": "_content/BarcodeScanner",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "BarcodeScanner/wwwroot",
+      "Source": "BarcodeScanner",
+      "ContentRoot": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/",
+      "BasePath": "_content/BarcodeScanner",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/css/style.css",
+      "SourceId": "BarcodeScanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/",
+      "BasePath": "_content/BarcodeScanner",
+      "RelativePath": "css/style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/style.css"
+    },
+    {
+      "Identity": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/index.html",
+      "SourceId": "BarcodeScanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/",
+      "BasePath": "_content/BarcodeScanner",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/js/app.js",
+      "SourceId": "BarcodeScanner",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/runner/workspace/artifacts/barcode-scanner/wwwroot/",
+      "BasePath": "_content/BarcodeScanner",
+      "RelativePath": "js/app.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/app.js"
+    }
+  ]
+}
