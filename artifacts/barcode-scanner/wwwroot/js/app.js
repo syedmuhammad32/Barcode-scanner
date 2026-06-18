@@ -110,7 +110,28 @@ async function startScanner() {
     } catch (err) {
         document.getElementById('startBtn').classList.remove('hidden');
         document.getElementById('stopBtn').classList.add('hidden');
-        showCameraError();
+        const errName = err?.name || '';
+        const errMsg = err?.message || String(err);
+        const isHttps = location.protocol === 'https:';
+
+        let msg = '📷 Camera access nahi ho saka.<br>';
+        msg += `<small style="color:#888;display:block;margin:4px 0 2px;">Error: ${errName} — ${errMsg}</small>`;
+        msg += `<small style="color:#888;display:block;margin:0 0 10px;">Protocol: ${location.protocol} | Host: ${location.hostname}</small>`;
+
+        if (!isHttps) {
+            msg += '<span style="color:#c53030;">⚠️ HTTP par camera kaam nahi karta — HTTPS zaroor hai.</span><br>';
+        }
+        if (errName === 'NotAllowedError') {
+            msg += '<span style="color:#c53030;">Browser ne permission deny ki. Address bar mein camera icon par click kar ke allow karein.</span><br>';
+        }
+        if (errName === 'NotFoundError') {
+            msg += '<span style="color:#c53030;">Koi camera nahi mila device par.</span><br>';
+        }
+
+        document.getElementById('errorCard').classList.remove('hidden');
+        document.getElementById('resultCard').classList.add('hidden');
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('errorMsg').innerHTML = msg;
     }
 }
 
