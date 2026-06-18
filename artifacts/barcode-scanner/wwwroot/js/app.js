@@ -28,9 +28,10 @@ function showResult(data) {
     document.getElementById('resultCard').classList.remove('hidden');
     document.getElementById('errorCard').classList.add('hidden');
     document.getElementById('loading').classList.add('hidden');
-    document.getElementById('resBarcode').textContent = data.barcode;
+    document.getElementById('resMaterial').textContent = data.materialCode || data.barcode;
     document.getElementById('resName').textContent = data.name;
-    document.getElementById('resPrice').textContent = 'PKR ' + data.price;
+    document.getElementById('resCapacity').textContent = data.capacity || '—';
+    document.getElementById('resPrice').textContent = data.price;
 }
 
 function showError(msg) {

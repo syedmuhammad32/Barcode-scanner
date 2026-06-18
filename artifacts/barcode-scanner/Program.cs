@@ -1,4 +1,5 @@
 using ClosedXML.Excel;
+using System.Text.RegularExpressions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,36 +19,62 @@ app.UseStaticFiles(new StaticFileOptions
     }
 });
 
-var excelPath = Path.Combine(AppContext.BaseDirectory, "Data", "shampoos.xlsx");
-
-EnsureExcelFileExists(excelPath);
+var excelPath = Path.Combine(Directory.GetCurrentDirectory(), "Data", "shampoos.xlsx");
 
 app.MapGet("/api/lookup/{barcode}", (string barcode) =>
 {
     try
     {
         if (!File.Exists(excelPath))
-            return Results.NotFound(new { message = "Data file not found." });
+            return Results.NotFound(new { message = $"Data file not found at: {excelPath}" });
 
         using var workbook = new XLWorkbook(excelPath);
         var worksheet = workbook.Worksheet(1);
         var rows = worksheet.RangeUsed()?.RowsUsed();
 
         if (rows == null)
-            return Results.NotFound(new { message = "No data found." });
+            return Results.NotFound(new { message = "Excel file mein koi data nahi mila." });
+
+        var search = barcode.Trim();
 
         foreach (var row in rows.Skip(1))
         {
-            var cellBarcode = row.Cell(1).GetString().Trim();
-            if (cellBarcode == barcode.Trim())
+            var col1 = row.Cell(1).GetString().Trim();
+            var col2 = row.Cell(2).GetString().Trim();
+
+            if (col1 == search || col2 == search)
             {
-                var name = row.Cell(2).GetString().Trim();
-                var price = row.Cell(3).GetString().Trim();
-                return Results.Ok(new { barcode = cellBarcode, name, price });
+                var name = row.Cell(3).GetString().Trim();
+                var priceBreakdown = row.Cell(6).GetString().Trim();
+                var conversionVal = row.Cell(5).GetString().Trim();
+
+                string price;
+                if (!string.IsNullOrEmpty(priceBreakdown))
+                {
+                    var match = Regex.Match(priceBreakdown, @"Rs\.\s*([\d,.]+)", RegexOptions.IgnoreCase);
+                    price = match.Success ? $"Rs. {match.Groups[1].Value}" : priceBreakdown;
+                }
+                else if (!string.IsNullOrEmpty(conversionVal) && double.TryParse(conversionVal, out var conv))
+                {
+                    price = $"Rs. {conv:F2}";
+                }
+                else
+                {
+                    price = "Price available nahi";
+                }
+
+                return Results.Ok(new
+                {
+                    barcode = search,
+                    materialCode = col2,
+                    name,
+                    price,
+                    capacity = row.Cell(4).GetString().Trim()
+                });
             }
         }
 
-        return Results.NotFound(new { message = $"Barcode '{barcode}' not found in database." });
+        return Results.NotFound(new { message = $"'{search}' database mein nahi mila." });
     }
     catch (Exception ex)
     {
@@ -56,47 +83,3 @@ app.MapGet("/api/lookup/{barcode}", (string barcode) =>
 });
 
 app.Run();
-
-void EnsureExcelFileExists(string path)
-{
-    var dir = Path.GetDirectoryName(path)!;
-    if (!Directory.Exists(dir))
-        Directory.CreateDirectory(dir);
-
-    if (File.Exists(path))
-        return;
-
-    using var workbook = new XLWorkbook();
-    var ws = workbook.Worksheets.Add("Shampoos");
-
-    ws.Cell(1, 1).Value = "Barcode";
-    ws.Cell(1, 2).Value = "Name";
-    ws.Cell(1, 3).Value = "Price (PKR)";
-
-    ws.Row(1).Style.Font.Bold = true;
-    ws.Row(1).Style.Fill.BackgroundColor = XLColor.LightBlue;
-
-    var data = new[]
-    {
-        ("8901030860009", "Head & Shoulders Classic Clean", "450"),
-        ("8901030820140", "Head & Shoulders Anti-Dandruff", "520"),
-        ("8901054520014", "Pantene Pro-V Smooth & Silky", "480"),
-        ("8901054017957", "Pantene Pro-V Hair Fall Control", "510"),
-        ("8714100878413", "Sunsilk Soft & Smooth", "320"),
-        ("8714100878420", "Sunsilk Hair Fall Solution", "340"),
-        ("8999999000011", "L'Oreal Elvive", "750"),
-        ("8999999000028", "Dove Intense Repair", "560"),
-        ("8999999000035", "Clear Anti-Dandruff", "400"),
-        ("8999999000042", "TRESemme Keratin Smooth", "680"),
-    };
-
-    for (int i = 0; i < data.Length; i++)
-    {
-        ws.Cell(i + 2, 1).Value = data[i].Item1;
-        ws.Cell(i + 2, 2).Value = data[i].Item2;
-        ws.Cell(i + 2, 3).Value = data[i].Item3;
-    }
-
-    ws.Columns().AdjustToContents();
-    workbook.SaveAs(path);
-}

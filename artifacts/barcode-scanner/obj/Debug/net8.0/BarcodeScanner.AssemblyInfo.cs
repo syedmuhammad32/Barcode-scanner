@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BarcodeScanner")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+77744e2bdc8261faf2f8934d9241cdc7d076278e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+53f9af127214faa4f9e6c85e371bdcb6aee7e931")]
 [assembly: System.Reflection.AssemblyProductAttribute("BarcodeScanner")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BarcodeScanner")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
