@@ -75,6 +75,30 @@ function testBarcode(code) {
     lookupBarcode(code);
 }
 
+function switchTab(tab) {
+    document.getElementById('cameraPanel').classList.toggle('hidden', tab !== 'camera');
+    document.getElementById('filePanel').classList.toggle('hidden', tab !== 'file');
+    document.getElementById('tabCamera').classList.toggle('active', tab === 'camera');
+    document.getElementById('tabFile').classList.toggle('active', tab === 'file');
+    if (tab !== 'camera') stopScanner();
+}
+
+async function scanFromFile(input) {
+    const file = input.files[0];
+    if (!file) return;
+    showLoading();
+    try {
+        const scanner = new Html5Qrcode("reader");
+        const result = await scanner.scanFile(file, false);
+        await scanner.clear();
+        document.getElementById('manualInput').value = result;
+        lookupBarcode(result);
+    } catch (err) {
+        showError('Image mein barcode nahi mila. Saaf aur seedhi barcode ki tasveer upload karein.');
+    }
+    input.value = '';
+}
+
 async function startScanner() {
     if (isScanning) return;
 

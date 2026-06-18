@@ -17,12 +17,28 @@
 
         <div class="scanner-section" id="scannerSection">
             <div id="reader"></div>
-            <button class="btn btn-primary" id="startBtn" onclick="startScanner()">
-                📷 Camera Se Scan Karen
-            </button>
-            <button class="btn btn-danger hidden" id="stopBtn" onclick="stopScanner()">
-                ⛔ Band Karen
-            </button>
+
+            <div class="scan-tabs">
+                <button class="tab-btn active" id="tabCamera" onclick="switchTab('camera')">📷 Live Camera</button>
+                <button class="tab-btn" id="tabFile" onclick="switchTab('file')">🖼️ Image Upload</button>
+            </div>
+
+            <div id="cameraPanel">
+                <button class="btn btn-primary" id="startBtn" onclick="startScanner()">
+                    📷 Camera Se Scan Karen
+                </button>
+                <button class="btn btn-danger hidden" id="stopBtn" onclick="stopScanner()">
+                    ⛔ Band Karen
+                </button>
+            </div>
+
+            <div id="filePanel" class="hidden">
+                <label class="file-upload-label" for="fileInput">
+                    <span>📁 Barcode Image Select Karen</span>
+                    <small>Phone se screenshot ya photo upload karein</small>
+                </label>
+                <input type="file" id="fileInput" accept="image/*" onchange="scanFromFile(this)" />
+            </div>
         </div>
 
         <div class="manual-section">
@@ -72,6 +88,6 @@
         </div>
     </div>
 
-    <script src="/js/app.js?v=3"></script>
+    <script src="/js/app.js?v=4"></script>
 </body>
 </html>
