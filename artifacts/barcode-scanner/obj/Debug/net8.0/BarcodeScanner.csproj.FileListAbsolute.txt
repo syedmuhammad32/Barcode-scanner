@@ -33,3 +33,4 @@
 /home/runner/workspace/artifacts/barcode-scanner/obj/Debug/net8.0/BarcodeScanner.pdb
 /home/runner/workspace/artifacts/barcode-scanner/obj/Debug/net8.0/BarcodeScanner.genruntimeconfig.cache
 /home/runner/workspace/artifacts/barcode-scanner/obj/Debug/net8.0/ref/BarcodeScanner.dll
+/home/runner/workspace/artifacts/barcode-scanner/obj/Debug/net8.0/BarcodeScanner.sourcelink.json
