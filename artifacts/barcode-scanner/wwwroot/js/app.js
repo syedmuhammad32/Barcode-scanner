@@ -1,6 +1,10 @@
 let html5QrCode = null;
 let isScanning = false;
 
+https://barcode-shampoo-scanner.vercel.app/
+
+const BACKEND_URL = 'https://shampoo-scanner-identity.replit.dev'; 
+
 function isInIframe() {
     try { return window.self !== window.top; } catch (e) { return true; }
 }
@@ -50,7 +54,8 @@ function showLoading() {
 async function lookupBarcode(barcode) {
     showLoading();
     try {
-        const res = await fetch(`/api/lookup/${encodeURIComponent(barcode)}`);
+        // 2. YAHAN AB BACKEND_URL USE HOGA
+        const res = await fetch(`${BACKEND_URL}/api/lookup/${encodeURIComponent(barcode)}`);
         const data = await res.json();
         if (res.ok) {
             showResult(data);
